@@ -4,3 +4,13 @@ Accueil,Contact
 Blog,Contact
 Contact,Accueil
 A propos,Accueil
+source,cible
+Accueil,Blog
+Accueil,Contact
+Blog,Contact
+Contact,Accueil
+Blog,A propos
+A propos,Accueil
+Contact,Service
+Service,Contact
+Service,Accueil

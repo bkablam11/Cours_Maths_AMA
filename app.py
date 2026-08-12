@@ -16,6 +16,16 @@ try:
     
     for i in indices_tries:
         st.write(f"**{noms_pages[i]}** : {scores[i]:.4f}")
+    
+    import matplotlib.pyplot as plt
+
+    # Après avoir calculé les scores :
+    st.subheader("Visualisation du PageRank")
+    fig, ax = plt.subplots()
+    ax.barh(noms_pages, scores, color='skyblue')
+    ax.set_xlabel('Score PageRank')
+    st.pyplot(fig)
         
 except FileNotFoundError:
     st.error("Le fichier 'liens.csv' est introuvable. Créez-le dans le dossier du projet.")
+    
