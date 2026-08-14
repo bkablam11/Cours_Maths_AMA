@@ -32,31 +32,6 @@ def charger_graphe_depuis_csv(fichier_csv):
     except FileNotFoundError:
         print(f"Erreur : Le fichier {fichier_csv} n'existe pas.")
         return [], []
-    """
-    Lit un CSV et renvoie la matrice d'adjacence et la liste des pages uniques.
-    """
-    liens = []
-    pages = set()
-    
-    # Lecture du CSV
-    with open(fichier_csv, mode='r', encoding='utf-8') as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            liens.append((row['source'], row['cible']))
-            pages.add(row['source'])
-            pages.add(row['cible'])
-            
-    liste_pages = sorted(list(pages))
-    page_to_id = {page: i for i, page in enumerate(liste_pages)}
-    N = len(liste_pages)
-    
-    # Création de la matrice d'adjacence
-    adj = [[0 for _ in range(N)] for _ in range(N)]
-    for source, cible in liens:
-        i, j = page_to_id[source], page_to_id[cible]
-        adj[i][j] = 1
-        
-    return adj, liste_pages
 
 def produit_matrice_vecteur(matrice, vecteur):
     """Calcule le produit v * M (vecteur ligne * matrice)."""
@@ -70,9 +45,17 @@ def produit_matrice_vecteur(matrice, vecteur):
 
 def page_rank_scratch(adj, alpha=0.85, tol=1e-10, max_iter=1000):
     """
-    Calcule le PageRank from scratch.
-    - adj: Liste de listes (matrice d'adjacence)
-    - alpha: facteur d'amortissement (damping factor)
+    Calcule le score PageRank d'un graphe à partir de sa matrice d'adjacence.
+
+    Args:
+        adj (list): Liste de listes, Matrice d'adjacence du graphe.
+        alpha (float, optional): Facteur d'amortissement. Defaults to 0.85.
+        tol (float, optional): Tolérance de convergence. Defaults to 1e-10.
+        max_iter (int, optional): Nombre maximum d'itérations. Defaults to 1000.
+
+    Returns:
+        list: Vecteur contenant les scores d'importance de chaque page.
+    
     """
     N = len(adj)
     
@@ -112,11 +95,11 @@ def page_rank_scratch(adj, alpha=0.85, tol=1e-10, max_iter=1000):
     return v
 
 # --- Test de vérification ---
-if __name__ == "__main__":
+""" if __name__ == "__main__":
     adj_test = [
         [0, 1, 0],
         [0, 0, 1],
         [1, 0, 0]
     ]
     scores = page_rank_scratch(adj_test)
-    print(f"Scores PageRank : {[round(s, 4) for s in scores]}")
+    print(f"Scores PageRank : {[round(s, 4) for s in scores]}") """
