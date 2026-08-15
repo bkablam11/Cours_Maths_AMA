@@ -34,7 +34,15 @@ def charger_graphe_depuis_csv(fichier_csv):
         return [], []
 
 def produit_matrice_vecteur(matrice, vecteur):
-    """Calcule le produit v * M (vecteur ligne * matrice)."""
+    """Calcule le produit v * M (vecteur ligne * matrice).
+
+    Args:
+        matrice (_type_): _description_
+        vecteur (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
     N = len(matrice)
     resultat = [0.0] * N
     # On itère pour v * G

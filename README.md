@@ -50,12 +50,8 @@ jupyter lab TP2_algebre_Lineaire.ipynb
 ```
 
 - Exécuter rapidement PageRank à petite échelle (dans un REPL Python) :
+Lien streamlit online [ici](https://coursmathsama-bgw638ypddrfthxhzgv9jl.streamlit.app).
 
-```python
-from engine import page_rank_scratch
-adj = [[0,1,0],[0,0,1],[1,0,0]]
-print(page_rank_scratch(adj))
-```
 
 **Remarques pédagogiques**
 - Les fonctions présentes sont volontairement explicites et lisibles pour
