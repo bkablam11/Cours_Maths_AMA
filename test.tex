@@ -1,0 +1,44 @@
+\documentclass{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{forest}
+
+\begin{document}
+
+\begin{forest}
+  for tree={
+    align=center,
+    base=bottom,
+    parent anchor=children,
+    child anchor=parent,
+    calign=fixed edge angles,
+    l sep=30pt,
+    s sep=20pt,
+    where level={0}{
+        circle, draw=blue!60, fill=blue!5, minimum size=8mm, font=\sffamily\bfseries
+    }{
+        if level={1}{
+            rectangle, rounded corners, draw=black!40, fill=gray!10, text width=2.4cm, font=\sffamily\small
+        }{
+            rectangle, rounded corners, draw=red!60, fill=red!5, text width=2.6cm, font=\sffamily\small
+        }
+    }
+  }
+  [Début
+    [Malade \\ $T$ \\ \emph{Prior: $0{,}005$}
+      [Test Positif \\ $T \cap \text{Pos}$ \\ \small$= 0{,}00490$, edge label={node[above left, font=\footnotesize] {$P(\text{Pos}\mid T) = 0{,}98$}}]
+      [Test Négatif \\ $T \cap \text{Nég}$ \\ \small$= 0{,}00010$, edge label={node[above right, font=\footnotesize] {$P(\text{Nég}\mid T) = 0{,}02$}}]
+    , edge label={node[above left, font=\footnotesize] {$P(T) = 0{,}005$}}
+    ]
+    [Sain \\ $T^c$ \\ \emph{Prior: $0{,}995$}
+      [Test Positif \\ $T^c \cap \text{Pos}$ \\ \small$= 0{,}02985$, edge label={node[above left, font=\footnotesize] {$P(\text{Pos}\mid T^c) = 0{,}03$}}
+      ]
+      [Test Négatif \\ $T^c \cap \text{Nég}$ \\ \small$= 0{,}96515$, edge label={node[above right, font=\footnotesize] {$P(\text{Nég}\mid T^c) = 0{,}97$}}
+      ]
+    , edge label={node[above right, font=\footnotesize] {$P(T^c) = 0{,}995$}}
+    ]
+  ]
+\end{forest}
+
+\end{document}

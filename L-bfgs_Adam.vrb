@@ -1,0 +1,32 @@
+\frametitle{Annexe : Benchmark, Mesure de Temps et Tracé}
+\begin{lstlisting}
+# --- Generation de donnees de test ---
+np.random.seed(42)
+X_synth = np.c_[np.ones(500), np.random.rand(500, 5)]
+vrai_theta = np.array([2.0, -1.0, 3.5, 0.5, -2.0, 1.0])
+y_synth = X_synth @ vrai_theta + np.random.randn(500) * 0.1
+theta_0 = np.zeros(6)
+
+# --- Execution et Mesure du Temps pour Adam ---
+t_start_adam = time.time()
+th_adam, cout_adam = optimiseur_adam(X_synth, y_synth, theta_0, alpha=0.05, n_iter=200)
+t_adam = time.time() - t_start_adam
+
+# --- Execution et Mesure du Temps pour L-BFGS ---
+t_start_lbfgs = time.time()
+th_lbfgs, cout_lbfgs = optimiseur_l_bfgs(X_synth, y_synth, theta_0, m_history=5, n_iter=200)
+t_lbfgs = time.time() - t_start_lbfgs
+
+print(f"Temps Adam : {t_adam:.4f}s | Temps L-BFGS : {t_lbfgs:.4f}s")
+
+# --- Trace des graphiques comparatifs ---
+plt.figure(figsize=(7, 3.5))
+plt.plot(cout_adam, label=f"Adam (Temps: {t_adam:.3f}s)", color="red")
+plt.plot(cout_lbfgs, label=f"L-BFGS (Temps: {t_lbfgs:.3f}s)", color="blue")
+plt.xlabel("Iterations")
+plt.ylabel("Fonction de Cout (MSE)")
+plt.legend()
+plt.title("Comparaison de Convergence : Adam vs L-BFGS")
+plt.grid(True)
+plt.show()
+    \end{lstlisting}

@@ -1,0 +1,4 @@
+\babel@toc {french}{}\relax 
+\beamer@sectionintoc {1}{Introduction et mise en contexte}{3}{0}{1}
+\beamer@sectionintoc {2}{Concepts mathématiques et algorithmes}{5}{0}{2}
+\beamer@sectionintoc {3}{Programmation Python et applications}{16}{0}{3}
